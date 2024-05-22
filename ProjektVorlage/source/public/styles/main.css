@@ -1,0 +1,61 @@
+/* Google Font einbinden */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* Grundlegende Stile für den Body */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #0f0f0f;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container-Stil für die ToDo-Liste */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Titelstil für die ToDo-Liste */
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Modal base styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

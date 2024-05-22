@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+<div class="container">
+    <h1>ToDo Liste</h1>
+
+    <div class="filter">
+        <select name="filter" id="filter" onchange="filterSelection(this.value)">
+            <option value="all">Alle</option>
+            <option value="completed">Fertig</option>
+        </select>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th onclick="sortTable()">Status</th>
+            <th onclick="sortTable()">Titel</th>
+            <th onclick="sortTable()">Fälligkeitsdatum</th>
+            <th onclick="sortTable()">Erstellungsdatum</th>
+            <th onclick="sortTable()">Wichtigkeit</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="noteList"></tbody>
+    </table>
+    <button id="openPopup">Notiz hinzufügen</button>
+</div>
+
+<div id="taskModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="form">
+            <label for="title">Titel:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="description">Beschreibung:</label>
+            <textarea id="description" name="description" required></textarea>
+
+            <label for="importance">Wichtigkeit:</label>
+            <select id="importance" name="importance">
+                <option value="low">Niedrig</option>
+                <option value="medium">Mittel</option>
+                <option value="high">Hoch</option>
+            </select>
+
+            <label for="duedate">Fälligkeitsdatum:</label>
+            <input type="date" id="duedate" name="duedate" required>
+
+            <button type="submit">Hinzufügen</button>
+        </form>
+    </div>
+</div>
+
+<script src="./scripts/main.js"></script>
+</body>
+</html>

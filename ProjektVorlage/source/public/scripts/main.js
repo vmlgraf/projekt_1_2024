@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const btnOpenPopup = document.getElementById("openPopup");
     const spanClose = document.getElementsByClassName("close")[0];
     const form = document.getElementById("form");
+    const status = document.getElementById("status");
     const title = document.getElementById("title");
     const description = document.getElementById("description");
     const importance = document.getElementById("importance");
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
         openModal();
     });
 
-    spanClose.addEventListener('click', closeModal);
+    spanClose?.addEventListener('click', closeModal);
 
     window.addEventListener('click', function(event) {
         if (event.target === modal) {
@@ -37,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
         const index = form.dataset.index;
         const noteData = {
+            status: status.value,
             title: title.value,
             description: description.value,
             importance: importance.value,
@@ -55,22 +57,35 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     noteList.addEventListener('click', function(event) {
-        if (event.target.tagName === 'BUTTON') {
+        if (event.target.classList.contains('edit-button')) {
             const index = event.target.dataset.index;
             const note = notes[index];
+            status.value = note.status;
             title.value = note.title;
             description.value = note.description;
             importance.value = note.importance;
             duedate.value = note.duedate;
             form.dataset.index = index;
             openModal();
+        } else if (event.target.classList.contains('delete-button')) {
+            const index = event.target.dataset.index;
+            notes.splice(index, 1);
+            localStorage.setItem("todos", JSON.stringify(notes));
+            renderNotes();
+        }else if (event.target.classList.contains('status-button')) {
+            const index = event.target.dataset.index;
+            const note = notes[index];
+            note.status = (note.status === 'done') ? 'not done' : 'done';
+            notes[index] = note;
+            localStorage.setItem("todos", JSON.stringify(notes));
+            renderNotes();
         }
     });
 
     function sortNotes(key) {
         notes.sort((a, b) => {
             if (a[key] < b[key]) return -1 * sortDirection;
-            if (a[key] > b[key]) return 1 * sortDirection;
+            if (a[key] > b[key]) return sortDirection;
             return 0;
         });
         sortDirection *= -1;  // Wechselt die Richtung für den nächsten Sortiervorgang
@@ -82,12 +97,16 @@ document.addEventListener("DOMContentLoaded", function() {
         notes.forEach((note, index) => {
             const noteElement = document.createElement('tr');
             noteElement.innerHTML = `
-                <td><input type="checkbox" ${note.completed ? 'checked' : ''}></td>
+                <td>${note.status}</td>
                 <td>${note.title}</td>
                 <td>${note.description}</td>
                 <td>${note.importance}</td>
                 <td>${note.duedate}</td>
-                <td><button data-index="${index}">Bearbeiten</button></td>
+                <td>
+                    <button class="button edit-button" data-index="${index}">Bearbeiten</button>
+                    <button class="button status-button" data-index="${index}">Fertig</button>
+                    <button class="button delete-button" data-index="${index}">Löschen</button>
+                </td>
             `;
             noteList.appendChild(noteElement);
         });
@@ -98,6 +117,18 @@ document.addEventListener("DOMContentLoaded", function() {
     // Bind the sortTable function to clickable table headers
     document.querySelectorAll('th').forEach(header => {
         const key = header.textContent.trim().toLowerCase().replace('ä', 'a').replace('ü', 'u').replace('ö', 'o').replace('ß', 'ss').replace(/[^a-z]/gi, '');
-        header.addEventListener('click', () => sortNotes(key));
+        header.addEventListener('click', () => sortNotes(getKey(key)));
     });
+
+    function getKey(headerText) {
+        const keyMap = {
+            'status': 'status',
+            'titel': 'title',
+            'beschreibung': 'description',
+            'wichtigkeit': 'importance',
+            'fälligkeitsdatum': 'duedate'
+        };
+        return keyMap[headerText] || headerText;
+    }
+
 });

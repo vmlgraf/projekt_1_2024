@@ -21,41 +21,62 @@
         <tr>
             <th onclick="sortTable()">Status</th>
             <th onclick="sortTable()">Titel</th>
-            <th onclick="sortTable()">Fälligkeitsdatum</th>
-            <th onclick="sortTable()">Erstellungsdatum</th>
+            <th onclick="sortTable()">Beschreibung</th>
             <th onclick="sortTable()">Wichtigkeit</th>
+            <th onclick="sortTable()">Fälligkeitsdatum</th>
+
             <th></th>
         </tr>
         </thead>
         <tbody id="noteList"></tbody>
     </table>
-    <button id="openPopup">Notiz hinzufügen</button>
+    <button id="openPopup" class="button">Notiz hinzufügen</button>
 </div>
 
 <div id="taskModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <form id="form">
-            <label for="title">Titel:</label>
-            <input type="text" id="title" name="title" required>
 
-            <label for="description">Beschreibung:</label>
-            <textarea id="description" name="description" required></textarea>
-
-            <label for="importance">Wichtigkeit:</label>
-            <select id="importance" name="importance">
-                <option value="low">Niedrig</option>
-                <option value="medium">Mittel</option>
-                <option value="high">Hoch</option>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <select name="status" id="status">
+                <option value="not done">not done</option>
+                <option value="done">done</option>
             </select>
+        </div>
 
-            <label for="duedate">Fälligkeitsdatum:</label>
-            <input type="date" id="duedate" name="duedate" required>
+        <form id="form">
+            <div class="form-group">
+                <label for="title">Titel:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
 
-            <button type="submit">Hinzufügen</button>
+            <div class="form-group">
+                <label for="description">Beschreibung:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="importance">Wichtigkeit:</label>
+                <select id="importance" name="importance">
+                    <option value="low">Niedrig</option>
+                    <option value="medium">Mittel</option>
+                    <option value="high">Hoch</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="duedate">Fälligkeitsdatum:</label>
+                <input type="date" id="duedate" name="duedate" required>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="button">Hinzufügen</button>
+            </div>
         </form>
     </div>
 </div>
+
 
 <script src="./scripts/main.js"></script>
 </body>

@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>About</title>
-    <link rel="stylesheet" href="./styles/main.css">
+    <link rel="stylesheet" href="styles/main.css">
+
 </head>
 <body>
 <div class="container">
-    <h1>ToDo Liste</h1>
+    <div class="header">
+        <h1>ToDo Liste</h1>
+        <button id="darkmode" class="button">Darkmode</button>
+    </div>
 
     <div class="filter">
         <select name="filter" id="filter" onchange="filterSelection(this.value)">
-            <option value="all">Alle</option>
-            <option value="completed">Fertig</option>
+            <option value="all">All</option>
+            <option value="not done">Offen</option>
+            <option value="done">Erledigt</option>
         </select>
     </div>
 
     <table>
         <thead>
         <tr>
-            <th onclick="sortTable()">Status</th>
-            <th onclick="sortTable()">Titel</th>
-            <th onclick="sortTable()">Beschreibung</th>
-            <th onclick="sortTable()">Wichtigkeit</th>
-            <th onclick="sortTable()">Fälligkeitsdatum</th>
-
+            <th data-key="status" onclick="sortTable(this)">Status <i class="fas fa-sort"></i></th>
+            <th data-key="title" onclick="sortTable(this)">Titel <i class="fas fa-sort"></i></th>
+            <th data-key="description" onclick="sortTable(this)">Beschreibung <i class="fas fa-sort"></i></th>
+            <th data-key="importance" onclick="sortTable(this)">Wichtigkeit <i class="fas fa-sort"></i></th>
+            <th data-key="duedate" onclick="sortTable(this)">Faelligkeitsdatum <i class="fas fa-sort"></i></th>
             <th></th>
         </tr>
         </thead>
@@ -40,8 +44,8 @@
         <div class="form-group">
             <label for="status">Status:</label>
             <select name="status" id="status">
-                <option value="not done">not done</option>
-                <option value="done">done</option>
+                <option value="not done">Offen</option>
+                <option value="done">Erledigt</option>
             </select>
         </div>
 
@@ -78,6 +82,6 @@
 </div>
 
 
-<script src="./scripts/main.js"></script>
+<script src="scripts/main.js"></script>
 </body>
 </html>

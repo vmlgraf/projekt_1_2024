@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About</title>
+    <title>ToDo List</title>
     <link rel="stylesheet" href="styles/main.css">
-
 </head>
 <body>
 <div class="container">
@@ -14,7 +13,7 @@
     </div>
 
     <div class="filter">
-        <select name="filter" id="filter" onchange="filterSelection(this.value)">
+        <select name="filter" id="filter" aria-label="Filter tasks by status">
             <option value="all">All</option>
             <option value="not done">Offen</option>
             <option value="done">Erledigt</option>
@@ -24,12 +23,12 @@
     <table>
         <thead>
         <tr>
-            <th data-key="status" onclick="sortTable(this)">Status <i class="fas fa-sort"></i></th>
-            <th data-key="title" onclick="sortTable(this)">Titel <i class="fas fa-sort"></i></th>
-            <th data-key="description" onclick="sortTable(this)">Beschreibung <i class="fas fa-sort"></i></th>
-            <th data-key="importance" onclick="sortTable(this)">Wichtigkeit <i class="fas fa-sort"></i></th>
-            <th data-key="duedate" onclick="sortTable(this)">Faelligkeitsdatum <i class="fas fa-sort"></i></th>
-            <th></th>
+            <th data-key="status">Status <i class="fas fa-sort"></i></th>
+            <th data-key="title">Titel <i class="fas fa-sort"></i></th>
+            <th data-key="description">Beschreibung <i class="fas fa-sort"></i></th>
+            <th data-key="importance">Wichtigkeit <i class="fas fa-sort"></i></th>
+            <th data-key="duedate">Fälligkeitsdatum <i class="fas fa-sort"></i></th>
+            <th>Aktionen</th>
         </tr>
         </thead>
         <tbody id="noteList"></tbody>
@@ -39,17 +38,16 @@
 
 <div id="taskModal" class="modal">
     <div class="modal-content">
-        <span class="close">&times;</span>
-
-        <div class="form-group">
-            <label for="status">Status:</label>
-            <select name="status" id="status">
-                <option value="not done">Offen</option>
-                <option value="done">Erledigt</option>
-            </select>
-        </div>
-
+        <span class="close" aria-label="Close">&times;</span>
         <form id="form">
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select name="status" id="status">
+                    <option value="not done">Offen</option>
+                    <option value="done">Erledigt</option>
+                </select>
+            </div>
+
             <div class="form-group">
                 <label for="title">Titel:</label>
                 <input type="text" id="title" name="title" required>
@@ -75,13 +73,14 @@
             </div>
 
             <div class="form-group">
-                <button type="submit" class="button">Hinzufügen</button>
+                <button type="submit" class="button">Speichern</button>
             </div>
         </form>
     </div>
 </div>
 
-
-<script src="scripts/main.js"></script>
+<script type="module" src="scripts/controller.js"></script>
+<script type="module" src="scripts/model.js"></script>
+<script type="module" src="scripts/view.js"></script>
 </body>
 </html>

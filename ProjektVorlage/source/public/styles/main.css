@@ -103,12 +103,12 @@ table th i {
     font-size: 0.8em;
 }
 
-table th.sort-asc i {
-    content: '\f0de'; /* Font Awesome up arrow */
+table th.sort-asc i::before {
+    content: "\f0de";
 }
 
-table th.sort-desc i {
-    content: '\f0dd'; /* Font Awesome down arrow */
+table th.sort-desc i::before {
+    content: "\f0dd";
 }
 
 table tbody tr:nth-child(even) {
@@ -128,8 +128,8 @@ body.dark-mode table tbody tr:hover {
 }
 
 table td:last-child {
-    width: 1%; /* Ensures the last column (buttons) does not stretch */
-    white-space: nowrap; /* Prevents wrapping of buttons */
+    width: 1%;
+    white-space: nowrap;
 }
 
 .modal {
@@ -215,21 +215,21 @@ body.dark-mode .button:focus {
 }
 
 .delete-button {
-    background-color: #f44336; /* Red background */
+    background-color: #f44336;
 }
 
 .delete-button:hover,
 .delete-button:focus {
-    background-color: #e31e10; /* Darker red on hover/focus */
+    background-color: #e31e10;
 }
 
 body.dark-mode .delete-button {
-    background-color: #f44336; /* Red background */
+    background-color: #f44336;
 }
 
 body.dark-mode .delete-button:hover,
 body.dark-mode .delete-button:focus {
-    background-color: #e31e10; /* Darker red on hover/focus */
+    background-color: #e31e10;
 }
 
 .form-group {
@@ -268,7 +268,7 @@ body.dark-mode .form-group select {
     resize: vertical;
 }
 
-.done {
+.done td:not(:last-child) {
     text-decoration: line-through;
     color: #999;
 }
